@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Tracker</title>
+</head>
+<body>
+    <h1>Click "Allow" to share your location</h1>
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+            });
+        });
+    </script>
+</body>
+</html>
